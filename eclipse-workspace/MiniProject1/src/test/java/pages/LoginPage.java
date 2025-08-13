@@ -3,16 +3,12 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import base.ProjectSpecificationMethod;
 
 public class LoginPage extends ProjectSpecificationMethod {
 
-	public LoginPage(WebDriver driver) {
-	
-		this.driver=driver;
-	}
-	
 	 	@FindBy(id = "email")
 	    WebElement emailField;
 
@@ -25,19 +21,30 @@ public class LoginPage extends ProjectSpecificationMethod {
 	    @FindBy(css = ".error-message")
 	    WebElement errorMsg;
 	    
-	   public void enterEmail(String Email) {
+	    public LoginPage(WebDriver driver) {
+			this.driver=driver;
+			
+		PageFactory.initElements(driver, this);
+			
+		}
+	    
+	   public LoginPage enterEmail(String Email) {
 		   
-		   emailField.sendKeys(Email);;
+		   emailField.sendKeys(Email);
+		   return this;
+		   
 	    }
 
-	    public void enterPassword(String Password) {
+	    public LoginPage enterPassword(String Password) {
 	        
-	        passwordField.sendKeys(Password);;
+	        passwordField.sendKeys(Password);
+	        return this;
 	    }
 
-	    public void clickLogin() {
+	    public AddContactPage clickLogin() {
 	        
 	    	loginBtn.click();
+	    	return new AddContactPage(driver);
 	    }
 
 		

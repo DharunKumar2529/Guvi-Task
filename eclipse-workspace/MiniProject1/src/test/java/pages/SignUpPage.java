@@ -3,17 +3,21 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import base.ProjectSpecificationMethod;
 
 public class SignUpPage extends ProjectSpecificationMethod {
 	
-	public SignUpPage(WebDriver driver) {
+//	public SignUpPage(WebDriver driver) {
+//		
+//		this.driver=driver;
+//	}
+//	
+		@FindBy(id = "signup")
+		WebElement signupbtn;
 		
-		this.driver=driver;
-	}
-	
-	 @FindBy(id = "firstName")
+		@FindBy(id = "firstName")
 	    WebElement firstNameField;
 
 	    @FindBy(id = "lastName")
@@ -31,19 +35,36 @@ public class SignUpPage extends ProjectSpecificationMethod {
 	    @FindBy(css = ".error-message")
 	    WebElement errorMsg;
 
-	    public void enterFirstName(String firstName) {
+	    public SignUpPage(WebDriver driver) {
+			this.driver=driver;
+			
+		PageFactory.initElements(driver, this);
+			
+		}
+	    
+	    public SignUpPage signupbtn() {
+	        
+	    	signupbtn.click();
+	        return this;
+	    }
+	    
+	    
+	    public SignUpPage enterFirstName(String firstName) {
 	        
 	        firstNameField.sendKeys(firstName);
+	        return this;
 	    }
 
-	    public void enterLastName(String lastName) {
+	    public SignUpPage enterLastName(String lastName) {
 	        
 	        lastNameField.sendKeys(lastName);
+	        return this;
 	    }
 
-	    public void enterEmail(String email) {
+	    public SignUpPage enterEmail(String email) {
 	        
 	        emailField.sendKeys(email);
+	        return this;
 	    }
 
 	    public void enterPassword(String password) {
@@ -52,8 +73,9 @@ public class SignUpPage extends ProjectSpecificationMethod {
 	    }
 
 
-	    public void clickSignUp() {
+	    public AddContactPage clickSignUp() {
 	        signUpBtn.click();
+	        return new AddContactPage(driver);
 	    }
 	    
 	    public String getErrorMessage() {

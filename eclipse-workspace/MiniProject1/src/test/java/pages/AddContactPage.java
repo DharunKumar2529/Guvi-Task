@@ -3,16 +3,15 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import base.ProjectSpecificationMethod;
 
 public class AddContactPage extends ProjectSpecificationMethod {
 
-	public AddContactPage(WebDriver driver) {
-
-		this.driver=driver;
-	}
-
+	@FindBy(id = "add-contact")
+	WebElement addcontactbtn;
+	
 	@FindBy(id = "firstName")
 	WebElement firstNameField;
 
@@ -51,65 +50,89 @@ public class AddContactPage extends ProjectSpecificationMethod {
 
 	@FindBy(css = ".error-message")
 	WebElement errorMsg;
+	
+	 public AddContactPage(WebDriver driver) {
+			this.driver=driver;
+			
+		PageFactory.initElements(driver, this);
+			
+		}
+	 
+	 public AddContactPage addcontactbtn() {
+		 addcontactbtn.click();
+		 return this;
+	 }
 
 	
-	public void enterFirstName(String firstName) {
+	public AddContactPage enterFirstName(String firstName) {
 		
 		firstNameField.sendKeys(firstName);
+		return this;
 	}
 
-	public void enterLastName(String lastName) {
+	public AddContactPage enterLastName(String lastName) {
 		
 		lastNameField.sendKeys(lastName);
+		return this;
 	}
 
-	public void enterBirthDate(String birthDate) {
+	public AddContactPage enterBirthDate(String birthDate) {
 		
 		birthDateField.sendKeys(birthDate);
+		return this;
 	}
 
-	public void enterEmail(String email) {
+	public AddContactPage enterEmail(String email) {
 		
 		emailField.sendKeys(email);
+		return this;
 	}
 
-	public void enterPhone(String phone) {
+	public AddContactPage enterPhone(String phone) {
 		
 		phoneField.sendKeys(phone);
+		return this;
 	}
 
-	public void enterStreet1(String street1) {
+	public AddContactPage enterStreet1(String street1) {
 		
 		street1Field.sendKeys(street1);
+		return this;
 	}
 
-	public void enterStreet2(String street2) {
+	public AddContactPage enterStreet2(String street2) {
 		
 		street2Field.sendKeys(street2);
+		return this;
 	}
 
-	public void enterCity(String city) {
+	public AddContactPage enterCity(String city) {
 		
 		cityField.sendKeys(city);
+		return this;
 	}
 
-	public void enterState(String state) {
+	public AddContactPage enterState(String state) {
 		
 		stateField.sendKeys(state);
+		return this;
 	}
 
-	public void enterPostalCode(String postalCode) {
+	public AddContactPage enterPostalCode(String postalCode) {
 		
 		postalCodeField.sendKeys(postalCode);
+		return this;
 	}
 
-	public void enterCountry(String country) {
+	public AddContactPage enterCountry(String country) {
 		
 		countryField.sendKeys(country);
+		return this;
 	}
 
-	public void clickSubmit() {
+	public AddContactPage clickSubmit() {
 		submitBtn.click();
+		return this;
 	}
 
 	public String getErrorMessage() {

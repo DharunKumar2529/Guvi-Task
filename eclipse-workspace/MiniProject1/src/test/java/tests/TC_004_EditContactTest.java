@@ -2,52 +2,105 @@ package tests;
 
 import java.io.IOException;
 
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import base.ProjectSpecificationMethod;
-import pages.EditContactPage;
-import utils.Utility;
+import pages.ContactDetailsPage;
+import pages.ContactListPage;
+import pages.LoginPage;
 
-public class TC_004_EditContactTest extends ProjectSpecificationMethod {
-	
-	@DataProvider(name = "EditContactData")
-    public Object[][] getEditContactData() throws IOException {
-        
-		String filePath = System.getProperty("user.dir") + "/src/test/resources/EditContactData.xlsx";
-        
-		return Utility.readExcelData(filePath, "Sheet1");
-    }
 
-    @Test(dataProvider = "EditContactData")
-    public void editContactTest(String firstName, String lastName, String birthDate, String email, String phone, String street1, String street2,
-                                String city, String state, String postalCode, String country, String type, String expectedMessage) throws InterruptedException {
+	public class TC_004_EditContactTest extends ProjectSpecificationMethod {
+
+		@BeforeTest
+		public void setup() throws IOException {
+		readAndwritePropFile();
+		testName="Editcontact Test";
+		testDescription="Testing the Login functionality of the application with valid and invalid details";
+		testAuthor="Dharun Kumar";
+		testCategory="Smoke Test";
+		
+		
+		}
+		
+    @Test(priority = 1)
+    public void editlastname() throws InterruptedException {
 
        
-
-        EditContactPage editContact = new EditContactPage(driver);
-
-        editContact.updateFirstName(firstName);
-        editContact.updateLastName(lastName);
-        editContact.updateBirthDate(birthDate);
-        editContact.updateEmail(email);
-        editContact.updatePhone(phone);
-        editContact.updateStreet1(street1);
-        editContact.updateStreet2(street2);
-        editContact.updateCity(city);
-        editContact.updateState(state);
-        editContact.updatePostalCode(postalCode);
-        editContact.updateCountry(country);
-        editContact.clickSave();
-
-        if (type.equalsIgnoreCase("Valid")) {
-            Assert.assertTrue(driver.getCurrentUrl().contains("/contactList"),
-                    "Edit contact failed for valid data");
-        } else {
-            Assert.assertTrue(editContact.getErrorMessage().contains(expectedMessage),
-                    "Error message mismatch for edit contact");
-        }
+    	LoginPage login = new LoginPage(driver);
+    	
+    	login.enterEmail(prop.getProperty("useremail"));
+    	login.enterPassword(prop.getProperty("password"));
+    	login.clickLogin();
+    	
+    	ContactListPage list = new ContactListPage(driver);
+    			list.contacttableclick();
+    	
+    	ContactDetailsPage details = new ContactDetailsPage(driver);
+    			details.editbtn();
+    			
+        WebElement lastname = driver.findElement(By.id("lastName"));
+        Thread.sleep(5000);
+        lastname.click();
+        lastname.clear();
+        
+        WebElement save = driver.findElement(By.id("submit"));
+        save.click();
     }
+        
+        @Test(priority = 2)
+        public void editContactTest() throws InterruptedException {
 
+            
+        	LoginPage login = new LoginPage(driver);
+        	
+        	login.enterEmail(prop.getProperty("useremail"));
+        	login.enterPassword(prop.getProperty("password"));
+        	login.clickLogin();
+        	
+        	ContactListPage list = new ContactListPage(driver);
+        			list.contacttableclick();
+        	
+        	ContactDetailsPage details = new ContactDetailsPage(driver);
+        			details.editbtn();
+        			
+            WebElement email = driver.findElement(By.id("email"));
+            Thread.sleep(5000);
+            email.click();
+            email.clear();
+            email.sendKeys("nithulan1@gmail.com");
+            
+            WebElement phone = driver.findElement(By.id("phone"));
+            Thread.sleep(5000);
+            phone.click();
+            phone.clear();
+            phone.sendKeys("1234567890");
+            
+            WebElement save = driver.findElement(By.id("submit"));
+            save.click();
+        }
+        
+        @Test(priority = 3)
+        public void editcancel() throws InterruptedException {
+
+            
+        	LoginPage login = new LoginPage(driver);
+        	
+        	login.enterEmail(prop.getProperty("useremail"));
+        	login.enterPassword(prop.getProperty("password"));
+        	login.clickLogin();
+        	
+        	ContactListPage list = new ContactListPage(driver);
+        			list.contacttableclick();
+        	
+        	ContactDetailsPage details = new ContactDetailsPage(driver);
+        			details.editbtn();
+        			
+            WebElement cancel = driver.findElement(By.id("cancel"));
+            Thread.sleep(5000);
+            cancel.click();
+}
 }

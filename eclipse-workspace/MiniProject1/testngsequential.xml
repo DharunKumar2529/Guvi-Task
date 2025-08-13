@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "Resource/testng-1.0.dtd">
+<suite thread-count="3" name="Suite">
+<listeners>
+	<listener class-name="utils.Listeners"></listener>
+</listeners>
+<parameter name="url" value="https://thinking-tester-contact-list.herokuapp.com/"></parameter>
+  <test thread-count="3" name="Test">
+  <parameter name="browser" value="Chrome"></parameter>
+    <classes>
+      <class name="tests.TC_001_LoginTest"/>
+      <class name="tests.TC_003_AddContactTest"/>
+      <class name="tests.TC_002_SignUpTest"/>
+      <class name="tests.TC_005_DeleteContactTest"/>
+      <class name="tests.TC_006_NavigationTest"/>
+      <class name="tests.TC_004_EditContactTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

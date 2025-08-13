@@ -3,15 +3,16 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import base.ProjectSpecificationMethod;
 
 public class EditContactPage extends ProjectSpecificationMethod {
 	
-	public EditContactPage(WebDriver driver) {
-
-		this.driver=driver;
-	}
+//	public EditContactPage(WebDriver driver) {
+//
+//		this.driver=driver;
+//	}
 	
 	@FindBy(id = "firstName")
     WebElement firstNameField;
@@ -51,65 +52,81 @@ public class EditContactPage extends ProjectSpecificationMethod {
 
     @FindBy(css = ".error-message")
     WebElement errorMsg;
-
     
-    public void updateFirstName(String firstName) {
+    public EditContactPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+    
+    public EditContactPage updateFirstName(String firstName) {
        
         firstNameField.sendKeys(firstName);
+        return this;
     }
 
-    public void updateLastName(String lastName) {
+    public EditContactPage updateLastName(String lastName) {
         
         lastNameField.sendKeys(lastName);
+        return this;
     }
 
-    public void updateBirthDate(String birthDate) {
+    public EditContactPage updateBirthDate(String birthDate) {
         
         birthDateField.sendKeys(birthDate);
+        return this;
     }
 
-    public void updateEmail(String email) {
+    public EditContactPage updateEmail(String email) {
         
         emailField.sendKeys(email);
+        return this;
     }
 
-    public void updatePhone(String phone) {
+    public EditContactPage updatePhone(String phone) {
         
         phoneField.sendKeys(phone);
+        return this;
     }
 
-    public void updateStreet1(String street1) {
+    public EditContactPage updateStreet1(String street1) {
        
         street1Field.sendKeys(street1);
+        return this;
     }
 
-    public void updateStreet2(String street2) {
+    public EditContactPage updateStreet2(String street2) {
         
         street2Field.sendKeys(street2);
+        return this;
     }
 
-    public void updateCity(String city) {
+    public EditContactPage updateCity(String city) {
         
         cityField.sendKeys(city);
+        return this;
     }
 
-    public void updateState(String state) {
+    public EditContactPage updateState(String state) {
         
         stateField.sendKeys(state);
+        return this;
     }
 
-    public void updatePostalCode(String postalCode) {
+    public EditContactPage updatePostalCode(String postalCode) {
         
         postalCodeField.sendKeys(postalCode);
+        return this;
     }
 
-    public void updateCountry(String country) {
+    public EditContactPage updateCountry(String country) {
        
         countryField.sendKeys(country);
+        return this;
     }
 
-    public void clickSave() {
+    public EditContactPage clickSave() {
         saveBtn.click();
+        return this;
     }
 
     public String getErrorMessage() {

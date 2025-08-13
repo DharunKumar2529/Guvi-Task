@@ -5,7 +5,11 @@
     <classes>
       <class name="tests.TC_003_AddContactTest">
         <methods>
+          <include name="testDeatils"/>
+          <include name="browserLaunchAndUrlLoad"/>
           <include name="addContactTest"/>
+          <include name="createReport"/>
+          <include name="teardown"/>
         </methods>
       </class> <!-- tests.TC_003_AddContactTest -->
     </classes>
