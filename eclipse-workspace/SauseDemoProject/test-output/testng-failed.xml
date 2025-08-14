@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <parameter name="url" value="https://www.saucedemo.com/"/>
+  <listeners>
+    <listener class-name="utils.Listeners"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="tests.TC_005_RemoveItemTest">
+        <methods>
+          <include name="browserLaunchAndUrlLoad"/>
+          <include name="testDeatils"/>
+          <include name="createReport"/>
+          <include name="setup"/>
+          <include name="CartfunctionTesting"/>
+          <include name="teardown"/>
+          <include name="closeReport"/>
+        </methods>
+      </class> <!-- tests.TC_005_RemoveItemTest -->
+      <class name="tests.TC_003_PlacingOrderTest">
+        <methods>
+          <include name="browserLaunchAndUrlLoad"/>
+          <include name="testDeatils"/>
+          <include name="createReport"/>
+          <include name="setup"/>
+          <include name="teardown"/>
+          <include name="CartfunctionTesting"/>
+          <include name="closeReport"/>
+        </methods>
+      </class> <!-- tests.TC_003_PlacingOrderTest -->
+      <class name="tests.TC_004_LogoutTest">
+        <methods>
+          <include name="browserLaunchAndUrlLoad"/>
+          <include name="CartfunctionTesting"/>
+          <include name="testDeatils"/>
+          <include name="setup"/>
+          <include name="createReport"/>
+          <include name="teardown"/>
+          <include name="closeReport"/>
+        </methods>
+      </class> <!-- tests.TC_004_LogoutTest -->
+      <class name="tests.TC_006_TotalOfMutipleItemsTest">
+        <methods>
+          <include name="browserLaunchAndUrlLoad"/>
+          <include name="setup"/>
+          <include name="testDeatils"/>
+          <include name="createReport"/>
+          <include name="teardown"/>
+          <include name="closeReport"/>
+          <include name="CartfunctionTesting"/>
+        </methods>
+      </class> <!-- tests.TC_006_TotalOfMutipleItemsTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
