@@ -14,6 +14,7 @@
           <include name="browserLaunchAndUrlLoad"/>
           <include name="deleteContactTest"/>
           <include name="createReport"/>
+          <include name="closeReport"/>
           <include name="teardown"/>
           <include name="setup"/>
         </methods>
